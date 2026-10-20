@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08111f">
+  <title>Meu espaço — Fluxo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/workspace/workspace.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/home/" data-view="home" aria-label="Fluxo, página inicial">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>fluxo<span class="brand-dot">.</span></span>
+      </a>
+
+      <div class="workspace-switcher">
+        <div class="workspace-avatar">N</div>
+        <div class="workspace-copy"><strong id="workspace-name">Seu espaço</strong><span>Plano gratuito</span></div>
+        <span class="chevron">⌄</span>
+      </div>
+
+      <p class="nav-label">ESPAÇO DE TRABALHO</p>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span> Visão geral</button>
+        <button class="nav-item" data-view="processes"><span class="nav-icon">◫</span> Meus processos <span class="nav-count" id="nav-count">0</span></button>
+        <button class="nav-item" id="new-process-nav"><span class="nav-icon">＋</span> Novo mapeamento</button>
+        <button class="nav-item" data-view="suggestions"><span class="nav-icon">✳</span> Guia de mapeamento</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-spark">✳</div>
+          <strong>Seu primeiro fluxo</strong>
+          <p>Comece pelo objetivo e evolua etapa por etapa.</p>
+          <button id="sidebar-guide">Ver guia <span>→</span></button>
+        </div>
+        <button class="profile-button" id="profile-button">
+          <span class="profile-avatar" id="profile-avatar">?</span>
+          <span class="profile-copy"><strong id="profile-name">Visitante</strong><small id="profile-role">Entre para acessar</small></span>
+          <span class="profile-more">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Workspace</span><span class="crumb-divider">/</span><strong id="breadcrumb-current">Visão geral</strong></div>
+        <div class="topbar-actions">
+          <span class="last-saved" id="user-greeting" hidden></span>
+          <button class="button button-outline account-button" id="account-button">Entrar</button>
+          <button class="top-avatar" id="top-avatar" aria-label="Perfil" hidden></button>
+        </div>
+      </header>
+
+      <section class="page-view active" id="home-view">
+        <div id="workspace-content" class="content-wrap">
+          <div class="section-heading">
+            <div><span class="section-kicker">SEU ESPAÇO</span><h2>Uma visão clara do que está acontecendo.</h2></div>
+            <button class="text-link" id="view-all-processes">Ver todos os processos <span>→</span></button>
+          </div>
+          <div class="overview-grid">
+            <div class="stat-card">
+              <div class="stat-top"><span class="stat-icon icon-blue">◫</span><span class="stat-trend">Neste espaço</span></div>
+              <div class="stat-number" id="total-count">0</div><div class="stat-label">Processos mapeados</div>
+              <div class="stat-progress"><span id="total-progress"></span></div>
+              <div class="stat-foot"><span>Seu primeiro passo começa aqui</span><span>→</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-top"><span class="stat-icon icon-green">✓</span><span class="stat-trend">Bom trabalho!</span></div>
+              <div class="stat-number" id="done-count">0</div><div class="stat-label">Processos finalizados</div>
+              <div class="stat-progress green-progress"><span id="done-progress"></span></div>
+              <div class="stat-foot"><span>Prontos para evoluir</span><span>→</span></div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-top"><span class="stat-icon icon-amber">◷</span><span class="stat-trend">Em andamento</span></div>
+              <div class="stat-number" id="pending-count">0</div><div class="stat-label">Mapeamentos pendentes</div>
+              <div class="stat-progress amber-progress"><span id="pending-progress"></span></div>
+              <div class="stat-foot"><span>Continue de onde parou</span><span>→</span></div>
+            </div>
+          </div>
+
+          <div class="process-section">
+            <div class="section-heading process-heading">
+              <div><span class="section-kicker">MÃO NA MASSA</span><h2>Seus processos</h2></div>
+              <button class="button button-outline" id="create-process-secondary"><span>＋</span> Novo mapeamento</button>
+            </div>
+            <div class="process-toolbar">
+              <div class="filter-tabs" role="tablist" aria-label="Filtrar processos">
+                <button class="filter-tab selected" data-filter="Todos">Todos <span id="all-tab-count">0</span></button>
+                <button class="filter-tab" data-filter="Pendente">Pendentes</button>
+                <button class="filter-tab" data-filter="Finalizado">Finalizados</button>
+              </div>
+              <label class="search-box"><span>⌕</span><input id="process-search" type="search" placeholder="Buscar processo..." aria-label="Buscar processo"></label>
+            </div>
+            <div class="process-list" id="process-list"></div>
+            <div class="empty-state" id="empty-state">
+              <div class="empty-illustration"><span>▤</span><i>＋</i></div>
+              <h3>Nenhum processo por aqui, ainda.</h3>
+              <p>Todo processo bem desenhado começa com uma conversa. Mapeie o primeiro com a gente.</p>
+              <button class="button button-primary" id="empty-create">Começar um mapeamento <span>→</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-view" id="processes-view">
+        <div class="subpage content-wrap">
+          <div class="subpage-intro"><div><span class="section-kicker">BIBLIOTECA DE FLUXOS</span><h1>Meus processos</h1><p>Todos os mapeamentos do seu espaço, em um só lugar.</p></div><button class="button button-primary" id="processes-create">＋ Novo mapeamento</button></div>
+          <div class="process-toolbar library-toolbar">
+            <div class="filter-tabs"><button class="filter-tab selected" data-filter="Todos">Todos <span id="library-all-count">0</span></button><button class="filter-tab" data-filter="Pendente">Pendentes</button><button class="filter-tab" data-filter="Finalizado">Finalizados</button></div>
+            <label class="search-box"><span>⌕</span><input id="library-search" type="search" placeholder="Buscar processo..." aria-label="Buscar processo"></label>
+          </div>
+          <div class="process-list" id="library-list"></div>
+          <div class="empty-state library-empty" id="library-empty"><div class="empty-illustration"><span>▤</span><i>＋</i></div><h3>Seu próximo processo começa aqui.</h3><p>Crie um mapeamento para deixar as etapas mais claras para todo mundo.</p><button class="button button-primary" id="library-create">Começar um mapeamento <span>→</span></button></div>
+        </div>
+      </section>
+
+      <section class="page-view" id="suggestions-view">
+        <div class="subpage content-wrap guide-page">
+          <div class="guide-hero"><span class="guide-illustration">✳</span><div><span class="section-kicker">GUIA PRÁTICO</span><h1>Mapeie com mais clareza.</h1><p>Você não precisa ter todas as respostas para começar. Siga estes passos para transformar uma rotina em um processo que todo mundo entende.</p></div></div>
+          <div class="guide-grid">
+            <article class="guide-card"><span class="guide-number">01</span><div class="guide-card-icon blue">◎</div><h3>Defina o objetivo</h3><p>O que esse processo precisa entregar? Comece pelo resultado esperado, não pelas ferramentas.</p><div class="guide-prompt">Pergunte: “Como sabemos que deu certo?”</div></article>
+            <article class="guide-card"><span class="guide-number">02</span><div class="guide-card-icon purple">↗</div><h3>Encontre o início e o fim</h3><p>Identifique o que dispara o fluxo e qual evento mostra que o trabalho foi concluído.</p><div class="guide-prompt">Dica: use verbos e situações concretas.</div></article>
+            <article class="guide-card"><span class="guide-number">03</span><div class="guide-card-icon amber">◇</div><h3>Liste as etapas</h3><p>Converse com quem executa a rotina e registre cada atividade na ordem em que acontece.</p><div class="guide-prompt">Uma etapa = uma ação + responsável.</div></article>
+            <article class="guide-card"><span class="guide-number">04</span><div class="guide-card-icon green">✳</div><h3>Marque decisões e oportunidades</h3><p>Onde o caminho pode mudar? Que tarefas repetitivas poderiam ser simplificadas ou automatizadas?</p><div class="guide-prompt">Procure esperas, retrabalho e aprovações.</div></article>
+          </div>
+          <div class="guide-cta"><div><span class="section-kicker">PRONTO PARA COMEÇAR?</span><h2>Seu processo não precisa nascer perfeito.</h2><p>Um primeiro rascunho já ajuda a enxergar o próximo passo.</p></div><button class="button button-primary" id="guide-create">Criar um mapeamento <span>→</span></button></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/workspace/workspace.js"></script>
+</body>
+</html>

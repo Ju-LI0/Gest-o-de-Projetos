@@ -1,0 +1,27 @@
+node_modules/
+data/
+
+# Local databases and SQLite sidecar files
+*.sqlite
+*.sqlite3
+*.db
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite-journal
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Local environment configuration and logs
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+
+# Generated test coverage
+coverage/
+
+# Operating system files
+.DS_Store
+Thumbs.db

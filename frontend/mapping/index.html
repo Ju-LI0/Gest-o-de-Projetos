@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f9fb">
+  <title>Mapeamento de processo — Fluxo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/workspace/workspace.css">
+  <link rel="stylesheet" href="/mapping/mapping.css">
+</head>
+<body>
+  <main class="mapping-page">
+    <section class="editor-modal" role="application" aria-label="Editor visual de processo">
+      <header class="editor-header">
+        <a class="brand editor-brand" href="/workspace/" aria-label="Voltar ao meu espaço"><span class="brand-mark"><span></span><span></span><span></span></span><span>fluxo<span class="brand-dot">.</span></span></a>
+        <div class="editor-breadcrumb"><a href="/workspace/">Meus processos</a><span>/</span><strong id="editor-breadcrumb-title">Novo mapeamento</strong></div>
+        <a class="mapping-back" href="/workspace/">Cancelar e voltar</a>
+      </header>
+      <div class="editor-body">
+        <aside class="editor-sidebar">
+          <div class="editor-name-wrap"><label for="process-name">NOME DO PROCESSO</label><input id="process-name" maxlength="70" placeholder="Ex.: Aprovação de compras"><p>Dê um nome que sua equipe reconheça.</p></div>
+          <div class="editor-section-title"><span>ETAPAS DO PROCESSO</span><span class="step-total" id="step-total">0</span></div>
+          <div class="step-palette">
+            <button class="palette-item" data-step="Atividade"><span class="palette-icon task-icon">▤</span><span><strong>Atividade</strong><small>Uma tarefa ou ação</small></span><b>＋</b></button>
+            <button class="palette-item" data-step="Decisão"><span class="palette-icon decision-icon">◇</span><span><strong>Decisão</strong><small>Um ponto de escolha</small></span><b>＋</b></button>
+            <button class="palette-item" data-step="Automação"><span class="palette-icon automation-icon">✳</span><span><strong>Automação</strong><small>Uma tarefa automatizada</small></span><b>＋</b></button>
+          </div>
+          <div class="suggestion-panel"><div class="suggestion-heading"><span>✧</span><strong>Sugestão para você</strong></div><p id="suggestion-text">Comece descrevendo o que dá início ao seu processo. Um bom gatilho ajuda a equipe a saber quando agir.</p><button id="next-suggestion" type="button">Outra sugestão <span>↗</span></button></div>
+        </aside>
+        <section class="canvas-area">
+          <div class="canvas-toolbar"><div><span class="canvas-live"></span> MAPA DO PROCESSO <span class="canvas-separator">·</span> <span id="canvas-process-name">Novo processo</span></div><div class="canvas-tools"><button id="zoom-out" type="button" aria-label="Diminuir zoom">−</button><span id="zoom-value">100%</span><button id="zoom-in" type="button" aria-label="Aumentar zoom">＋</button><span class="tool-divider"></span><button id="reset-canvas" type="button" title="Limpar etapas" aria-label="Limpar etapas">↺</button></div></div>
+          <div class="canvas-viewport" id="canvas-viewport">
+            <div class="canvas-grid"></div>
+            <div class="canvas-content" id="canvas-content"><div class="flow-steps" id="flow-steps"></div><div class="canvas-empty" id="canvas-empty"><span class="canvas-empty-icon">↗</span><strong>Seu fluxo começa com uma ideia.</strong><span>Adicione as etapas ao lado para desenhar o processo.</span><span class="canvas-empty-arrow">←</span></div></div>
+            <div class="canvas-hint">DICA <span>Adicione as etapas na ordem em que acontecem.</span></div>
+          </div>
+          <footer class="editor-footer"><span><span class="save-indicator"></span> Alterações salvas ao finalizar</span><div><button class="button button-outline" id="save-pending" type="button">Salvar como pendente</button><button class="button button-primary" id="save-done" type="button">Finalizar mapeamento <span>→</span></button></div></footer>
+        </section>
+      </div>
+    </section>
+  </main>
+  <div class="step-name-backdrop" id="step-name-modal" aria-hidden="true">
+    <form class="step-name-dialog" id="step-name-form" role="dialog" aria-modal="true" aria-labelledby="step-name-title">
+      <span class="section-kicker">ETAPA DO PROCESSO</span>
+      <h2 id="step-name-title">Nome da etapa</h2>
+      <p id="step-name-description">Escolha um nome claro e fácil de reconhecer.</p>
+      <label for="step-name-input">NOME</label><input id="step-name-input" maxlength="48" required autocomplete="off" placeholder="Ex.: Revisar solicitação">
+      <div class="step-name-actions"><button type="button" class="button button-outline" id="cancel-step-name">Cancelar</button><button type="submit" class="button button-primary" id="confirm-step-name">Adicionar etapa <span>→</span></button></div>
+    </form>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/mapping/mapping.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f8fc">
+  <title>Criar conta — Fluxo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/register/register.css">
+</head>
+<body data-auth-mode="register">
+  <main class="auth-page">
+    <a class="brand" href="/home/" aria-label="Voltar para a página inicial"><span class="brand-mark"><i></i><i></i><i></i></span><span>fluxo<span>.</span></span></a>
+    <section class="auth-card" aria-labelledby="auth-title">
+      <span class="eyebrow"><i></i> SEU PRÓXIMO FLUXO COMEÇA AQUI</span>
+      <h1 id="auth-title">Crie seu espaço.</h1>
+      <p class="auth-intro">Uma conta para guardar seus processos e acompanhar cada melhoria.</p>
+      <form id="auth-form">
+        <label for="name">SEU NOME</label><input id="name" name="name" type="text" required minlength="2" maxlength="80" autocomplete="name" placeholder="Como podemos chamar você?">
+        <label for="email">E-MAIL</label><input id="email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="voce@empresa.com">
+        <label for="password">CRIE UMA SENHA</label><input id="password" name="password" type="password" required minlength="10" maxlength="128" autocomplete="new-password" placeholder="Pelo menos 10 caracteres">
+        <p class="auth-error" id="auth-error" role="alert" hidden></p>
+        <button class="button" id="submit-button" type="submit">Criar minha conta <span>→</span></button>
+      </form>
+      <p class="auth-switch">Já tem uma conta? <a href="/login/">Entrar</a></p>
+      <a class="back-link" href="/home/">← Voltar para a página inicial</a>
+    </section>
+    <p class="auth-note">Seus mapeamentos são privados e ficam associados à sua conta.</p>
+  </main>
+  <script src="/register/register.js"></script>
+</body>
+</html>
